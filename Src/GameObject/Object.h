@@ -1,0 +1,1 @@
+//Definir a classe Object, como classe abstracta, que será a base para todos os objetos do jogo.
