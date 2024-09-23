@@ -1,12 +1,15 @@
-// TextureManager.cpp
 #include "TextureManager.h"
 #include "Engine.h"
+#include <iostream>
 
 TextureManager* TextureManager::s_Instance = nullptr;
 
 bool TextureManager::Load(std::string id, std::string filename) {
-    SDL_Surface* surface = SDL_LoadBMP(filename.c_str());
-    if (!surface) return false;
+    SDL_Surface* surface = IMG_Load(filename.c_str());
+    if (!surface) {
+        std::cout << "IMG_Load Error: " << IMG_GetError() << std::endl;
+        return false;
+    }
 
     SDL_Texture* texture = SDL_CreateTextureFromSurface(Engine::GetInstance()->GetRenderer(), surface);
     SDL_FreeSurface(surface);
@@ -14,8 +17,10 @@ bool TextureManager::Load(std::string id, std::string filename) {
     if (texture) {
         m_TextureMap[id] = texture;
         return true;
+    } else {
+        std::cout << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
+        return false;
     }
-    return false;
 }
 
 void TextureManager::Draw(std::string id, int x, int y, int width, int height, SDL_RendererFlip flip) {

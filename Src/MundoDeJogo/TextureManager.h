@@ -1,8 +1,8 @@
-// TextureManager.h
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <string>
 #include <map>
 

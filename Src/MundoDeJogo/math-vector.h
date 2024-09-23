@@ -6,7 +6,7 @@
 #include <type_traits>
 #include <ostream>
 #include <cmath>
-#include <cstdint> // Adicionado para uint32_t
+#include <cstdint>
 
 namespace Mylib
 {

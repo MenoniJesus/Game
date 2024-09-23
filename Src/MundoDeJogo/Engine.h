@@ -1,4 +1,3 @@
-// Engine.h
 #ifndef ENGINE_H
 #define ENGINE_H
 
@@ -6,6 +5,7 @@
 #include <string>
 #include "TextureManager.h"
 #include "../GameObject/Mage.h"
+#include "InputHandler.h"
 
 class Engine {
 public:
@@ -31,7 +31,8 @@ private:
     SDL_Window* m_Window = nullptr;
     SDL_Renderer* m_Renderer = nullptr;
     bool m_IsRunning = false;
-    Mage mage; // Adicionado para renderizar o mago
+    Mage mage;
+    InputHandler inputHandler;
 };
 
 #endif // ENGINE_H

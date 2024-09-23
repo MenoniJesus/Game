@@ -1,4 +1,3 @@
-// Mage.h
 #ifndef MAGE_H
 #define MAGE_H
 
@@ -17,15 +16,20 @@ public:
     }
 
     void handleInput(const SDL_Event& event) {
-        // Lógica para lidar com a entrada do mago
+        
     }
+
+    int getX() const { return m_X; }
+    int getY() const { return m_Y; }
+    void setX(int x) { m_X = x; }
+    void setY(int y) { m_Y = y; }
 
 private:
     std::string m_TextureID;
-    int m_X = 100; // Posição inicial X
-    int m_Y = 100; // Posição inicial Y
-    int m_Width = 64; // Largura da imagem
-    int m_Height = 64; // Altura da imagem
+    int m_X = 100; 
+    int m_Y = 100; 
+    int m_Width = 64; 
+    int m_Height = 64; 
 };
 
 #endif // MAGE_H
