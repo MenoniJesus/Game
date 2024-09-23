@@ -1,43 +1,37 @@
+// Engine.h
 #ifndef ENGINE_H
 #define ENGINE_H
 
-#include <SDL.h>
-#include <SDL_image.h>
-
-#define SCREEN_WIDTH 960
-#define SCREEN_HEIGHT 640
+#include <SDL2/SDL.h>
+#include <string>
+#include "TextureManager.h"
+#include "../GameObject/Mage.h"
 
 class Engine {
-    public:
-        static int mageX, mageY, gelecaX, gelecaY;
-        enum Direction { LEFT, UP, RIGHT, DOWN };
-        static Direction gelecaDirection;
-
-        static Engine* GetInstance(){
-            return a_Instance = (a_Instance != nullptr) ? a_Instance : new Engine();
+public:
+    static Engine* GetInstance() {
+        if (a_Instance == nullptr) {
+            a_Instance = new Engine();
         }
+        return a_Instance;
+    }
 
-        bool Init();
-        bool Clean();
-        void Quit();
+    bool Init();
+    void Clean();
+    void Quit();
+    void Update();
+    void Render();
+    void Events();
+    bool IsRunning() const { return m_IsRunning; }
+    SDL_Renderer* GetRenderer() const { return m_Renderer; }
 
-        void Update();
-        void Render();
-        void Events();
-        void UpdateGeleca();
-
-        inline bool IsRunning(){ return m_IsRunning; };
-        inline SDL_Renderer* GetRenderer(){ return m_Renderer; };
-
-    private:
-        Engine(){};
-        bool m_IsRunning;
-
-        SDL_Window* m_Window;
-        SDL_Renderer* m_Renderer;
-
-        static Engine* a_Instance;
-
+private:
+    Engine() = default;
+    static Engine* a_Instance;
+    SDL_Window* m_Window = nullptr;
+    SDL_Renderer* m_Renderer = nullptr;
+    bool m_IsRunning = false;
+    Mage mage; // Adicionado para renderizar o mago
 };
 
 #endif // ENGINE_H

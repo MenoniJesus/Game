@@ -1,1 +1,0 @@
-//Aqui é focado apenas para o mago, que é uma classe do jogo.
