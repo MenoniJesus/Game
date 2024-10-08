@@ -2,23 +2,25 @@
     #define SDL_MAIN_HANDLED
 #endif
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <iostream>
-#include "../MundoDeJogo/Engine.h"
+#include "../Game/WorldGame.h"
 
-int main(int argc, char** argv) {
-    if (!Engine::GetInstance()->Init()) {
-        std::cout << "Engine initialization failed" << std::endl;
-        return -1;
+int main(int argc, char** argv){
+    WorldGame::GetInstance()->Init();
+
+    Uint32 startTime = SDL_GetTicks();
+
+    while(WorldGame::GetInstance()->IsRunning()){
+        WorldGame::GetInstance()->Events();
+        WorldGame::GetInstance()->Update();
+        WorldGame::GetInstance()->Render();
+        Uint32 finalTime = SDL_GetTicks();
+        long executionTime = (finalTime - startTime) / 1000.0f;
+        startTime = finalTime;
+        SDL_Log("Execution Time: %ld", executionTime);
     }
 
-    while (Engine::GetInstance()->IsRunning()) {
-        Engine::GetInstance()->Events();
-        Engine::GetInstance()->Update();
-        Engine::GetInstance()->Render();
-    }
-
-    Engine::GetInstance()->Clean();
-    std::cout << "Engine cleaned up and exited" << std::endl;
+    WorldGame::GetInstance()->Clean();
     return 0;
 }
