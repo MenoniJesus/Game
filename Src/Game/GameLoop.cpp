@@ -9,20 +9,17 @@ void GameLoop::Run() {
 
     Uint32 startTime = SDL_GetTicks();
 
-    int frequencia = 22050;
-    Uint16 formato = AUDIO_S16SYS;
-    int canal = 2;
+    int freq = 22050;
+    Uint16 format = AUDIO_S16SYS;
+    int channel = 2;
     int buffer = 4096;
 
-    Mix_OpenAudio(frequencia, formato, canal, buffer);
-    Mix_Music *musica;
-    Mix_Chunk *efeitoSonoro1;
+    Mix_OpenAudio(freq, format, channel, buffer);
+    Mix_Music *music;
 
-    efeitoSonoro1 = Mix_LoadWAV("../../audio/Sus.wav");
-    musica = Mix_LoadMUS("../../audio/FFIdg.mp3");
+    music = Mix_LoadMUS("../../audio/testeV2.mp3");
 
-    Mix_PlayChannel(-1, efeitoSonoro1, 0);
-    Mix_PlayMusic(musica, -1);
+    Mix_PlayMusic(music, -1);
 
     while (WorldGame::GetInstance()->IsRunning()) {
         WorldGame::GetInstance()->Events();
@@ -32,9 +29,8 @@ void GameLoop::Run() {
         float executionTime = static_cast<float>(finalTime - startTime) / 1000.0f;
         startTime = finalTime;
     }
-
-    Mix_FreeChunk(efeitoSonoro1);
-    Mix_FreeMusic(musica);
+    
+    Mix_FreeMusic(music);
     Mix_CloseAudio();
     WorldGame::GetInstance()->Clean();
 }
