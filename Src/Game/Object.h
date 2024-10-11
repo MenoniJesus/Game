@@ -1,7 +1,8 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "MathVector.h"
+#include "Types.h"
+
 #include <SDL2/SDL.h>
 
 class Object {
@@ -14,7 +15,7 @@ class Object {
         virtual void Events(SDL_Event& event) = 0;
 
     protected:
-        Mylib::Math::Vector2f position;
+        Vector2f position;
 };
 
 #endif // OBJECT_H

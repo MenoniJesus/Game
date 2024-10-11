@@ -29,6 +29,8 @@ class WorldGame {
         SDL_Window* m_Window;
         SDL_Renderer* m_Renderer;
 
+        Mage m_mage;
+
         static WorldGame* s_Instance;
 };
 

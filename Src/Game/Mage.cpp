@@ -4,38 +4,21 @@
 Mage::Mage() {
     attributes.imagePath = "../../assets/mage.jpg";
     attributes.health = 100;
-    attributes.width = 4;
-    attributes.height = 4; 
-    attributes.position = Mylib::Math::Vector2f(0.0f, 0.0f);
+    attributes.width = 64;
+    attributes.height = 64; 
+    attributes.position = Vector2f(0.0f, 0.0f);
 }
 
 Mage::~Mage() {
 }
 
-std::string Mage::GetImagePath() {
-    return attributes.imagePath;
-}
-
-int Mage::GetHealth() {
-    return attributes.health;
-}
-
-void Mage::SetHealth(int health) {
-    attributes.health = health;
-}
-
-Mylib::Math::Vector2f Mage::GetPosition() {
-    return attributes.position;
-}
-
-void Mage::SetPosition(const Mylib::Math::Vector2f& position) {
-    attributes.position = position;
-}
-
 void Mage::Update() {
+    //movimentação aqui
 }
 
 void Mage::Render() {
+    TextureManager::GetInstance()->Load("mage", attributes.imagePath);
+    TextureManager::GetInstance()->Draw("mage", attributes.position[0], attributes.position[1], attributes.width, attributes.height);
 }
 
 void Mage::Events(SDL_Event& event) {

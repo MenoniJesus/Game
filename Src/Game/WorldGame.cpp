@@ -1,6 +1,7 @@
 #include "WorldGame.h"
 #include "TextureManager.h"
 #include "InputController.h"
+#include "Mage.h"
 
 WorldGame* WorldGame::s_Instance = nullptr;
 
@@ -10,7 +11,7 @@ bool WorldGame::Init(){
         return false;
     }
 
-    m_Window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1024, 720, 0);
+    m_Window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 840, 640, 0);
     if(m_Window == nullptr){
         SDL_Log("SDL_CreateWindow Error: %s", SDL_GetError());
         return false;
@@ -22,7 +23,6 @@ bool WorldGame::Init(){
         return false;
     }
 
-    TextureManager::GetInstance()->Load("player", "../../assets/mage.jpg");
     return m_IsRunning = true;
 }
 
@@ -38,13 +38,14 @@ void WorldGame::Quit(){
 }
 
 void WorldGame::Update(){
+    m_mage.Update();
 }
 
 void WorldGame::Render(){
     SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
     SDL_RenderClear(m_Renderer);
 
-    TextureManager::GetInstance()->Draw("player", 100, 100, 64, 64);
+    m_mage.Render();
     SDL_RenderPresent(m_Renderer);
 }
 

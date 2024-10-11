@@ -1,0 +1,1 @@
+//Aqui vai ser a versão do game que vai ser usada para o combate

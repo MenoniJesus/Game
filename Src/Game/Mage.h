@@ -10,26 +10,26 @@ class Mage : public Object {
         Mage();
         ~Mage();
 
-        std::string GetImagePath();
+        std::string GetImagePath() { return attributes.imagePath; }
 
-        int GetHealth();
-        void SetHealth(int health);
+        int GetHealth() { return attributes.health; } 
+        void SetHealth(int health) { attributes.health = health; }
 
-        Mylib::Math::Vector2f GetPosition();
-        void SetPosition(const Mylib::Math::Vector2f& position);
+        Vector2f GetPosition() { return attributes.position; }
+        void SetPosition(const Vector2f& position) { attributes.position = position; }
 
         void Update() override;
         void Render() override;
-        void Events(SDL_Event& event) override;
+        void Events(SDL_Event& event) override; 
 
     private:
-        typedef struct Attributes{
+        struct Attributes{
             std::string imagePath;
             int width;
             int height;
             int health;
-            Mylib::Math::Vector2f position;
-        } Attributes;
+            Vector2f position;
+        };
 
         Attributes attributes;
 };
