@@ -1,9 +1,9 @@
-#ifndef WORDLGAME_H
-#define WORDLGAME_H
+#ifndef WORLDGAME_H
+#define WORLDGAME_H
 
 #include <SDL2/SDL.h>
 #include <SDL_image.h>
-#include "Mage.h"
+#include "Persona.h"
 
 class WorldGame {
     public:
@@ -29,9 +29,10 @@ class WorldGame {
         SDL_Window* m_Window;
         SDL_Renderer* m_Renderer;
 
-        Mage m_mage;
+        Persona m_persona;
+        std::string m_backgroundTextureID;
 
         static WorldGame* s_Instance;
 };
 
-#endif // WORDLGAME_H
+#endif // WORLDGAME_H

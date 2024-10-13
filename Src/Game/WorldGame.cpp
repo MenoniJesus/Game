@@ -1,7 +1,6 @@
 #include "WorldGame.h"
 #include "TextureManager.h"
-#include "InputController.h"
-#include "Mage.h"
+#include "Persona.h"
 
 WorldGame* WorldGame::s_Instance = nullptr;
 
@@ -23,10 +22,16 @@ bool WorldGame::Init(){
         return false;
     }
 
+    m_backgroundTextureID = "background";
+    if(!TextureManager::GetInstance()->Load(m_backgroundTextureID, "../../assets/telaDeFundo.png")){
+        return false;
+    }
+
     return m_IsRunning = true;
 }
 
 bool WorldGame::Clean(){
+    TextureManager::GetInstance()->Drop(m_backgroundTextureID);
     SDL_DestroyRenderer(m_Renderer);
     SDL_DestroyWindow(m_Window);
     SDL_Quit();
@@ -38,14 +43,16 @@ void WorldGame::Quit(){
 }
 
 void WorldGame::Update(){
-    m_mage.Update();
+    m_persona.Update();
 }
 
 void WorldGame::Render(){
     SDL_SetRenderDrawColor(m_Renderer, 255, 255, 255, 255);
     SDL_RenderClear(m_Renderer);
 
-    m_mage.Render();
+    TextureManager::GetInstance()->Draw(m_backgroundTextureID, 0, 0, 840, 640);
+    m_persona.Render();
+
     SDL_RenderPresent(m_Renderer);
 }
 
@@ -57,7 +64,7 @@ void WorldGame::Events(){
                 Quit();
                 break;
             default:
-                InputController::GetInstance()->handleKeyboardEvent(event);
+                m_persona.Events(event);
                 break;
         }
     }
