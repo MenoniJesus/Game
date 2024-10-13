@@ -23,27 +23,23 @@ void Persona::Render() {
 
 void Persona::Events(const SDL_Event& event) {
     if (event.type == SDL_KEYDOWN) {
-        bool moved = false;
         switch (event.key.keysym.sym) {
             case SDLK_w:
-                attributes.position[1] -= 10;
-                moved = true;
+                attributes.position[1] -= 16;
+                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
             case SDLK_s:
-                attributes.position[1] += 10;
-                moved = true;
+                attributes.position[1] += 16;
+                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
-            case SDLK_a:
-                attributes.position[0] -= 10;
-                moved = true;
+            case SDLK_a: 
+                attributes.position[0] -= 16;
+                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
             case SDLK_d:
-                attributes.position[0] += 10;
-                moved = true;
+                attributes.position[0] += 16;
+                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
-        }
-        if (moved) {
-            SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
         }
     }
 }

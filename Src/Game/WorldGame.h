@@ -14,7 +14,6 @@ class WorldGame {
         bool Init();
         bool Clean();
         void Quit();
-
         void Update();
         void Render();
         void Events();
