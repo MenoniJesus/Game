@@ -7,7 +7,7 @@ Persona::Persona() {
     attributes.health = 100;
     attributes.width = 100;
     attributes.height = 180; 
-    attributes.position = Vector2f(0.0f, 0.0f);
+    attributes.position = Vector2f(0.0f, 220.0f);
 }
 
 Persona::~Persona() {
