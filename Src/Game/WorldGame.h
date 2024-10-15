@@ -14,7 +14,7 @@ class WorldGame {
         bool Init();
         bool Clean();
         void Quit();
-        void Update();
+        void Update(float deltaTime);
         void Render();
         void Events();
 

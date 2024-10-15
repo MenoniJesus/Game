@@ -13,12 +13,13 @@ void GameLoop::Run() {
     SoundManager::GetInstance()->StartMusic("../../audio/testeV2.mp3");
 
     while (WorldGame::GetInstance()->IsRunning()) {
-        WorldGame::GetInstance()->Events();
-        WorldGame::GetInstance()->Update();
-        WorldGame::GetInstance()->Render();
         Uint32 finalTime = SDL_GetTicks();
         float executionTime = static_cast<float>(finalTime - startTime) / 1000.0f;
         startTime = finalTime;
+
+        WorldGame::GetInstance()->Events();
+        WorldGame::GetInstance()->Update(executionTime);
+        WorldGame::GetInstance()->Render();
     }
 
     SoundManager::GetInstance()->Clean();

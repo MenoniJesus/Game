@@ -18,7 +18,7 @@ public:
     Vector2f GetPosition() { return attributes.position; }
     void SetPosition(const Vector2f& position) { attributes.position = position; }
 
-    void Update();
+    void Update(float deltaTime);
     void Render();
     void Events(const SDL_Event& event); 
 
@@ -29,6 +29,7 @@ private:
         int height;
         int health;
         Vector2f position;
+        Vector2f velocity;
     };
 
     Attributes attributes;

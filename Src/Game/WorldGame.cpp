@@ -42,8 +42,8 @@ void WorldGame::Quit(){
     m_IsRunning = false;
 }
 
-void WorldGame::Update(){
-    m_persona.Update();
+void WorldGame::Update(float deltaTime){
+    m_persona.Update(deltaTime);
 }
 
 void WorldGame::Render(){
