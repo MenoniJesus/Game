@@ -41,19 +41,19 @@ void Persona::Events(const SDL_Event& event) {
         switch (event.key.keysym.sym) {
             case SDLK_w:
                 attributes.velocity[1] = -112; 
-                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
+                //SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
             case SDLK_s:
                 attributes.velocity[1] = 112; 
-                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
+                //SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
             case SDLK_a: 
                 attributes.velocity[0] = -112; 
-                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
+                //SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
             case SDLK_d:
                 attributes.velocity[0] = 112; 
-                SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
+                //SoundManager::GetInstance()->PlaySoundEffect("../../audio/step_sound.wav");
                 break;
         }
     } else if (event.type == SDL_KEYUP) {

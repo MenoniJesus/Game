@@ -10,7 +10,7 @@ bool WorldGame::Init(){
         return false;
     }
 
-    m_Window = SDL_CreateWindow("Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 840, 640, 0);
+    m_Window = SDL_CreateWindow("Demo da Demo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 840, 640, 0);
     if(m_Window == nullptr){
         SDL_Log("SDL_CreateWindow Error: %s", SDL_GetError());
         return false;
