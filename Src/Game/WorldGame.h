@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL_image.h>
 #include "Persona.h"
+#include "Slime.h"
 
 class WorldGame {
     public:
@@ -29,9 +30,12 @@ class WorldGame {
         SDL_Renderer* m_Renderer;
 
         Persona m_persona;
+        Slime m_slime;
         std::string m_backgroundTextureID;
 
         static WorldGame* s_Instance;
+
+        bool CheckCollision(const Persona& persona, const Slime& slime);
 };
 
 #endif // WORLDGAME_H

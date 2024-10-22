@@ -1,6 +1,7 @@
 #include "WorldGame.h"
 #include "TextureManager.h"
 #include "Persona.h"
+#include "SoundManager.h"
 
 WorldGame* WorldGame::s_Instance = nullptr;
 
@@ -44,6 +45,24 @@ void WorldGame::Quit(){
 
 void WorldGame::Update(float deltaTime){
     m_persona.Update(deltaTime);
+    m_slime.Update(deltaTime);
+
+    if (CheckCollision(m_persona, m_slime)) {
+        SoundManager::GetInstance()->PlaySoundEffect("../../audio/bonkMeme.wav"); 
+
+        // Ajustar a posição do Persona para que ele não ultrapasse os limites
+        if (m_persona.GetPosition()[0] < m_slime.GetPosition()[0]) {
+            m_persona.SetPosition(Vector2f(std::max(m_slime.GetPosition()[0] - m_persona.GetWidth(), -20.0f), m_persona.GetPosition()[1]));
+        } else {
+            m_persona.SetPosition(Vector2f(std::min(m_slime.GetPosition()[0] + m_slime.GetWidth(), 760.0f), m_persona.GetPosition()[1]));
+        }
+
+        if (m_persona.GetPosition()[1] < m_slime.GetPosition()[1]) {
+            m_persona.SetPosition(Vector2f(m_persona.GetPosition()[0], std::max(m_slime.GetPosition()[1] - m_persona.GetHeight(), 224.0f)));
+        } else {
+            m_persona.SetPosition(Vector2f(m_persona.GetPosition()[0], std::min(m_slime.GetPosition()[1] + m_slime.GetHeight(), 480.0f)));
+        }
+    }
 }
 
 void WorldGame::Render(){
@@ -52,6 +71,7 @@ void WorldGame::Render(){
 
     TextureManager::GetInstance()->Draw(m_backgroundTextureID, 0, 0, 840, 640);
     m_persona.Render();
+    m_slime.Render();
 
     SDL_RenderPresent(m_Renderer);
 }
@@ -68,4 +88,18 @@ void WorldGame::Events(){
                 break;
         }
     }
+}
+
+bool WorldGame::CheckCollision(const Persona& persona, const Slime& slime) {
+    float personaLeft = persona.GetPosition()[0];
+    float personaRight = persona.GetPosition()[0] + persona.GetWidth();
+    float personaTop = persona.GetPosition()[1];
+    float personaBottom = persona.GetPosition()[1] + persona.GetHeight();
+
+    float slimeLeft = slime.GetPosition()[0];
+    float slimeRight = slime.GetPosition()[0] + slime.GetWidth();
+    float slimeTop = slime.GetPosition()[1];
+    float slimeBottom = slime.GetPosition()[1] + slime.GetHeight();
+
+    return !(personaLeft >= slimeRight || personaRight <= slimeLeft || personaTop >= slimeBottom || personaBottom <= slimeTop);
 }

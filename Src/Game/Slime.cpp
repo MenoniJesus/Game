@@ -4,32 +4,48 @@
 Slime::Slime() {
     attributes.imagePath = "../../assets/slime.png";
     attributes.health = 50;
-    attributes.width = 96;
-    attributes.height = 96;
-    attributes.position = Vector2f(500.0f, 400.0f);
+    attributes.width = 112;
+    attributes.height = 112;
+    attributes.position = Vector2f(650.0f, 370.0f);
 }
 
 Slime::~Slime() {
 }
 
 void Slime::Update(float deltaTime) {
-    
-}
+    static float totalTime = 0.0f;
+    static int direction = 0;
+    static float distanceMoved = 0.0f;
+    const float moveDistance = 100.0f;
 
-void Slime::Render(float deltaTime) {
-    static int frame = 0;
-    static float frameTime = 0.0f;
-    const float frameDuration = 0.8f;
+    totalTime += deltaTime;
 
-    frameTime += deltaTime;
-    if (frameTime >= frameDuration) {
-        frame = (frame + 1) % 3;
-        frameTime = 0.0f;
+    if (distanceMoved >= moveDistance) {
+        direction = (direction + 1) % 4;
+        distanceMoved = 0.0f;
     }
 
-    int frameX = frame * attributes.width;
-    int frameY = 0;
+    float moveStep = 100.0f * deltaTime;
 
+    switch (direction) {
+        case 0:
+            attributes.position[1] += moveStep;
+            break;
+        case 1: 
+            attributes.position[0] -= moveStep;
+            break;
+        case 2:
+            attributes.position[1] -= moveStep;
+            break;
+        case 3:
+            attributes.position[0] += moveStep;
+            break;
+    }
+
+    distanceMoved += moveStep;
+}
+
+void Slime::Render() {
     TextureManager::GetInstance()->Load("slime", attributes.imagePath);
-    TextureManager::GetInstance()->DrawFrame("slime", attributes.position[0], attributes.position[1], attributes.width, attributes.height, frameX, frameY);
+    TextureManager::GetInstance()->Draw("slime", attributes.position[0], attributes.position[1], attributes.width, attributes.height);
 }

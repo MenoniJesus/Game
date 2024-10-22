@@ -10,13 +10,16 @@ public:
     Persona();
     ~Persona();
 
-    std::string GetImagePath() { return attributes.imagePath; }
+    std::string GetImagePath() const { return attributes.imagePath; }
 
-    int GetHealth() { return attributes.health; } 
+    int GetHealth() const { return attributes.health; } 
     void SetHealth(int health) { attributes.health = health; }
 
-    Vector2f GetPosition() { return attributes.position; }
+    Vector2f GetPosition() const { return attributes.position; }
     void SetPosition(const Vector2f& position) { attributes.position = position; }
+
+    int GetWidth() const { return attributes.width; }
+    int GetHeight() const { return attributes.height; }
 
     void Update(float deltaTime);
     void Render();
