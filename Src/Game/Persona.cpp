@@ -3,10 +3,10 @@
 #include "SoundManager.h"
 
 Persona::Persona() {
-    attributes.imagePath = "../../assets/persona.jpg";
+    attributes.imagePath = "../../assets/mage.png";
     attributes.health = 100;
     attributes.width = 100;
-    attributes.height = 180; 
+    attributes.height = 160; 
     attributes.position = Vector2f(0.0f, 200.0f);
     attributes.velocity = Vector2f(0.0f, 0.0f);
 }
@@ -20,14 +20,14 @@ void Persona::Update(float deltaTime) {
 
     if (attributes.position[1] < 224) {
         attributes.position[1] = 224;
-    } else if (attributes.position[1] > 470) {
-        attributes.position[1] = 470;
+    } else if (attributes.position[1] > 480) {
+        attributes.position[1] = 480;
     }
 
     if (attributes.position[0] < -20) {
         attributes.position[0] = -20;
-    } else if (attributes.position[0] > 765) {
-        attributes.position[0] = 765;
+    } else if (attributes.position[0] > 760) {
+        attributes.position[0] = 760;
     }
 }
 

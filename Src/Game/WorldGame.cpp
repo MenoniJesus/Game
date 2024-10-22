@@ -23,7 +23,7 @@ bool WorldGame::Init(){
     }
 
     m_backgroundTextureID = "background";
-    if(!TextureManager::GetInstance()->Load(m_backgroundTextureID, "../../assets/telaDeFundo.png")){
+    if(!TextureManager::GetInstance()->Load(m_backgroundTextureID, "../../assets/FundoIFTECH.png")){
         return false;
     }
 
