@@ -24,3 +24,8 @@ Tecnologias Utilizadas:
 Minha meta com este projeto é desenvolver um jogo que seja ao mesmo tempo divertido e jogável. Ao longo do tempo, farei ajustes e melhorias conforme o progresso avança, com o objetivo de alcançar algo inovador e legal.
 
 Espero atingir esse objetivo e aprender bastante durante o processo!
+
+
+Linux: g++ -std=c++20 -o Main Main.cpp ../Game/GameLoop.cpp ../Game/Persona.cpp ../Game/SoundManager.cpp ../Game/Slime.cpp ../Game/TextureManager.cpp ../Game/WorldGame.cpp `pkg-config --cflags --libs sdl2 SDL2_mixer SDL2_image`
+
+Windows: g++ -o Main.exe Main.cpp ./Game/GameLoop.cpp ../Game/Persona.cpp ../Game/SoundManager.cpp ../Game/Slime.cpp ../Game/TextureManager.cpp ../Game/WorldGame.cpp -I/ucrt64/include/SDL2/ -L/ucrt64/lib/ -lSDL2 -lSDL2main -lSDL2_image -lmingw32 -w

@@ -3,7 +3,7 @@
 
 Slime::Slime() {
     attributes.imagePath = "../../assets/slime.png";
-    attributes.health = 50;
+    attributes.health = 20;
     attributes.width = 112;
     attributes.height = 112;
     attributes.position = Vector2f(650.0f, 370.0f);

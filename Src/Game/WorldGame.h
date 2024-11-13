@@ -2,7 +2,7 @@
 #define WORLDGAME_H
 
 #include <SDL2/SDL.h>
-#include <SDL_image.h>
+#include <SDL2/SDL_image.h>
 #include "Persona.h"
 #include "Slime.h"
 

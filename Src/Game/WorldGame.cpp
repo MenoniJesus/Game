@@ -50,7 +50,6 @@ void WorldGame::Update(float deltaTime){
     if (CheckCollision(m_persona, m_slime)) {
         SoundManager::GetInstance()->PlaySoundEffect("../../audio/bonkMeme.wav"); 
 
-        // Ajustar a posição do Persona para que ele não ultrapasse os limites
         if (m_persona.GetPosition()[0] < m_slime.GetPosition()[0]) {
             m_persona.SetPosition(Vector2f(std::max(m_slime.GetPosition()[0] - m_persona.GetWidth(), -20.0f), m_persona.GetPosition()[1]));
         } else {
@@ -92,14 +91,14 @@ void WorldGame::Events(){
 
 bool WorldGame::CheckCollision(const Persona& persona, const Slime& slime) {
     float personaLeft = persona.GetPosition()[0];
-    float personaRight = persona.GetPosition()[0] + persona.GetWidth();
+    float personaRight = persona.GetPosition()[0] + 64;
     float personaTop = persona.GetPosition()[1];
-    float personaBottom = persona.GetPosition()[1] + persona.GetHeight();
+    float personaBottom = persona.GetPosition()[1] + 64;
 
     float slimeLeft = slime.GetPosition()[0];
-    float slimeRight = slime.GetPosition()[0] + slime.GetWidth();
+    float slimeRight = slime.GetPosition()[0] + 64;
     float slimeTop = slime.GetPosition()[1];
-    float slimeBottom = slime.GetPosition()[1] + slime.GetHeight();
+    float slimeBottom = slime.GetPosition()[1] + 64;
 
     return !(personaLeft >= slimeRight || personaRight <= slimeLeft || personaTop >= slimeBottom || personaBottom <= slimeTop);
 }

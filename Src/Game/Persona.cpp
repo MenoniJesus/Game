@@ -3,9 +3,9 @@
 #include "SoundManager.h"
 
 Persona::Persona() {
-    attributes.imagePath = "../../assets/mage.png";
-    attributes.health = 100;
-    attributes.width = 100;
+    attributes.imagePath = "../../assets/persona.jpg";
+    attributes.health = 50;
+    attributes.width = 128;
     attributes.height = 160; 
     attributes.position = Vector2f(0.0f, 200.0f);
     attributes.velocity = Vector2f(0.0f, 0.0f);
